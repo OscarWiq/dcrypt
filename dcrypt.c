@@ -42,7 +42,7 @@ int main(int argc, char **argv){
                 case 'p':
                     bzero(passwd, sizeof(passwd));
                     if(decrypt(argv[2], passwd)){
-                        fprintf(stderr, "ERROR\n");
+                        fprintf(stderr, "ERROR \n");
                         exit(1);
                     }
                     fprintf(stderr, "password: %s\n", passwd);
@@ -104,7 +104,7 @@ int main(int argc, char **argv){
 
         bzero(passwd, sizeof(passwd));
         if (decrypt(&line[pw_pos], passwd)) {
-                fprintf(stderr, "Error.\n");
+                fprintf(stderr, "ERROR \n");
                 exit(1);
         }
         else {
