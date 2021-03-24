@@ -34,7 +34,7 @@ int main(int argc, char **argv){
         }
 
         if (argv[1][0] == '-'){
-            switch(argv[1][1]){
+            switch (argv[1][1]){
                 case 'h':
                     usage();
                     break;
@@ -108,7 +108,7 @@ int main(int argc, char **argv){
                 exit(1);
         }
         else {
-            if(pw_pos == strlen(pw_str1))
+            if (pw_pos == strlen(pw_str1))
                     fprintf(out, "%s", pw_str1);
             else if (pw_pos == strlen(pw_str2))
                     fprintf(out, "%s", pw_str2);
@@ -127,7 +127,7 @@ int decrypt(char *enc_pw, char *dec_pw){
 
     unsigned int seed, i, val = 0;
 
-    if(strlen(enc_pw) & 1)
+    if (strlen(enc_pw) & 1)
         return(-1);
 
     seed = (enc_pw[0] - '0') * 10 + enc_pw[1] - '0';
@@ -143,17 +143,17 @@ int decrypt(char *enc_pw, char *dec_pw){
 
         val *= 16;
 
-        if(isdigit(enc_pw[i] = toupper(enc_pw[i]))) {
+        if (isdigit(enc_pw[i] = toupper(enc_pw[i]))) {
                 val += enc_pw[i] - '0';
                 continue;
         }
 
-        if(enc_pw[i] >= 'A' && enc_pw[i] <= 'F') {
+        if (enc_pw[i] >= 'A' && enc_pw[i] <= 'F') {
             val += enc_pw[i] - 'A' + 10;
             continue;
         }
 
-        if(strlen(enc_pw) != i)
+        if (strlen(enc_pw) != i)
             return(-1);
     }
 
