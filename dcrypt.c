@@ -64,10 +64,7 @@ int main(int argc, char **argv){
                 exit(1);
 
     }
-    else if (argc <= 0){
-        usage();
-        exit(1);
-    }
+
 
     while (1){
         for (i = 0; i < 256; i++){
