@@ -87,23 +87,23 @@ int main(int argc, char **argv){
 
         pw_pos = 0;
         line[i] = 0;
-        if(!strncmp(line, pw_str1, strlen(pw_str1)))
+        if (!strncmp(line, pw_str1, strlen(pw_str1)))
             pw_pos = strlen(pw_str1);
 
-        if(!strncmp(line, pw_str2, strlen(pw_str2)))
+        if (!strncmp(line, pw_str2, strlen(pw_str2)))
             pw_pos = strlen(pw_str2);
-        if(!strncmp(line, pw_str3, strlen(pw_str3)))
+        if (!strncmp(line, pw_str3, strlen(pw_str3)))
             pw_pos = strlen(pw_str3);
-        if(!strncmp(line, pw_str4, strlen(pw_str4)))
+        if (!strncmp(line, pw_str4, strlen(pw_str4)))
             pw_pos = strlen(pw_str4);
 
-        if(!pw_pos) {
+        if (!pw_pos) {
                 fprintf(stdout, "%s\n", line);
                 continue;
         }
 
         bzero(passwd, sizeof(passwd));
-        if(decrypt(&line[pw_pos], passwd)) {
+        if (decrypt(&line[pw_pos], passwd)) {
                 fprintf(stderr, "Error.\n");
                 exit(1);
         }
