@@ -52,7 +52,6 @@ int main(int argc, char **argv){
                     fprintf(stderr, "%s: unknown opt\n", pname);
 
             return(0);
-
             }
         }
 
@@ -62,9 +61,7 @@ int main(int argc, char **argv){
         if (argc > 2)
             if ((out = fopen(argv[2], "wt")) == NULL)
                 exit(1);
-
     }
-
 
     while (1){
         for (i = 0; i < 256; i++){
@@ -95,25 +92,24 @@ int main(int argc, char **argv){
             pw_pos = strlen(pw_str4);
 
         if (!pw_pos) {
-                fprintf(stdout, "%s\n", line);
-                continue;
+            fprintf(stdout, "%s\n", line);
+            continue;
         }
 
         bzero(passwd, sizeof(passwd));
         if (decrypt(&line[pw_pos], passwd)) {
-                fprintf(stderr, "ERROR \n");
-                exit(1);
+            fprintf(stderr, "ERROR \n");
+            exit(1);
         }
         else {
             if (pw_pos == strlen(pw_str1))
-                    fprintf(out, "%s", pw_str1);
+                fprintf(out, "%s", pw_str1);
             else if (pw_pos == strlen(pw_str2))
-                    fprintf(out, "%s", pw_str2);
+                fprintf(out, "%s", pw_str2);
             else if (pw_pos == strlen(pw_str3))
                 fprintf(out, "%s", pw_str3);
             else if (pw_pos == strlen(pw_str4))
                 fprintf(out, "%s", pw_str4);
-
 
             fprintf(out, "%s\n", passwd);
         }
@@ -130,19 +126,19 @@ int decrypt(char *enc_pw, char *dec_pw){
     seed = (enc_pw[0] - '0') * 10 + enc_pw[1] - '0';
 
     if (seed > 15 || !isdigit(enc_pw[0]) || !isdigit(enc_pw[1]))
-            return(-1);
+        return(-1);
 
     for (i = 2 ; i <= strlen(enc_pw); i++) {
         if(i !=2 && !(i & 1)) {
-                dec_pw[i / 2 - 2] = val ^ xlat[seed++];
-                val = 0;
+            dec_pw[i / 2 - 2] = val ^ xlat[seed++];
+            val = 0;
         }
 
         val *= 16;
 
         if (isdigit(enc_pw[i] = toupper(enc_pw[i]))) {
-                val += enc_pw[i] - '0';
-                continue;
+            val += enc_pw[i] - '0';
+            continue;
         }
 
         if (enc_pw[i] >= 'A' && enc_pw[i] <= 'F') {
@@ -158,7 +154,6 @@ int decrypt(char *enc_pw, char *dec_pw){
 
     return(0);
 }
-
 
 int usage(){
     fprintf(stdout, "Usage: %s -p <encrypted password>\n", pname);
